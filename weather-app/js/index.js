@@ -37,12 +37,32 @@ function getData(url, cityName, appId, units){
             appId: appId,
             units: units,
         },
+        success: function () {
+            switch (units){
+                case 'metric':
+                    addDegOrFah(' °C');
+                    break;
+                default:
+                    addDegOrFah('  °F')
+                    break;
+            }
+        },
         jsonpCallback: 'fetchData',
         type: 'GET'
     }).fail(function (error){
         console.error(error);
         alert('Error sending Request')
     });
+}
+
+/**
+ * @function addDegOrFah
+ * Adds degree celsius or fahrenheit to temperature
+ *
+ * @param value string to add
+ */
+function addDegOrFah(value){
+    $('#temp').append(value);
 }
 
 /**
@@ -59,7 +79,7 @@ function fetchData(forecast){
         country = forecast.sys.country;
 
     html += `<h3> Weather Forecast for ${cityName}, ${country} </h3>`
-    html += `<em>Temperature: <b>${forecast.main.temp}</b></em>
+    html += `<em>Temperature: <b id="temp">${forecast.main.temp}</b></em>
                 <p>Weather: ${forecast.weather[0].main} <br>
                    Description: ${forecast.weather[0].description}</p>`
 
