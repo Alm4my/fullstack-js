@@ -91,6 +91,8 @@ function fetchData(forecast){
     $('#log').html(html);
 }
 
+
+
 $(document).ready(function (){
     $('.btn-metric').click(function (){
         prepareData('metric');
