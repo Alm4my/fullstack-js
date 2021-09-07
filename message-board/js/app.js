@@ -12,7 +12,7 @@ $(document).ready(() => {
 
     $('#send').click(() => {
         const sendButton = $(this);
-        sendButton.html('<img src="../img/spinner.gif" width="20" />');
+        sendButton.html('<img src="../img/spinner.gif" alt=""/>');
         const username= $('input[name=username]').val();
         const message= $('input[name=message]').val();
 
